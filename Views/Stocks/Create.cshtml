@@ -1,0 +1,63 @@
+@model TradingApp.Models.Stock
+
+@{
+    ViewData["Title"] = "Create Stock";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Create New Stock</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Symbol" class="form-label"></label>
+                            <input asp-for="Symbol" class="form-control" />
+                            <span asp-validation-for="Symbol" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CompanyName" class="form-label"></label>
+                            <input asp-for="CompanyName" class="form-control" />
+                            <span asp-validation-for="CompanyName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CurrentPrice" class="form-label"></label>
+                            <input asp-for="CurrentPrice" class="form-control" />
+                            <span asp-validation-for="CurrentPrice" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ChangePercent" class="form-label"></label>
+                            <input asp-for="ChangePercent" class="form-control" />
+                            <span asp-validation-for="ChangePercent" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Notes" class="form-label"></label>
+                            <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="LastUpdated" value="@DateTime.Now" />
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

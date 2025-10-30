@@ -1,0 +1,56 @@
+@model IEnumerable<TradingApp.Models.Stock>
+
+@{
+    ViewData["Title"] = "Stocks";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Manage Stocks</h1>
+        <a asp-action="Create" class="btn btn-primary">Create New Stock</a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Symbol)</th>
+                        <th>@Html.DisplayNameFor(model => model.CompanyName)</th>
+                        <th>@Html.DisplayNameFor(model => model.CurrentPrice)</th>
+                        <th>@Html.DisplayNameFor(model => model.ChangePercent)</th>
+                        <th>@Html.DisplayNameFor(model => model.LastUpdated)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Symbol)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                            <td>₹@item.CurrentPrice.ToString("N2")</td>
+                            <td class="@(item.ChangePercent >= 0 ? "text-success" : "text-danger")">
+                                @(item.ChangePercent >= 0 ? "+" : "")@item.ChangePercent.ToString("F2")%
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.LastUpdated)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

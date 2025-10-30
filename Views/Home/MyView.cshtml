@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "SmartTrade - Demo Stock Trading Portal";
+}
+
+<div class="container-fluid" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; min-height: 100vh; color: white;">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4">@ViewBag.Greeting</h1>
+            <h2 class="mb-4">Welcome to SmartTrade</h2>
+            <p class="lead mb-5">A demo stock trading portal showcasing ASP.NET Core MVC features</p>
+
+            <a asp-action="Welcome" asp-controller="Home" class="btn btn-primary btn-lg">Go to Dashboard</a>
+        </div>
+    </div>
+</div>
